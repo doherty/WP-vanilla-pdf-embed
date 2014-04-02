@@ -135,7 +135,7 @@ function vpdfe_pdf_embed_html_from_autoembed ($matches, $attr, $url, $rawattr) {
     $embed_html = vpdfe_pdf_embed_html($url);
     return $embed_html ? $embed_html : $url;
 }
-wp_embed_register_handler('vanilla-pdf', '#^'.home_url().'#i', 'vpdfe_pdf_embed_html_from_autoembed');
+wp_embed_register_handler('vanilla-pdf', '#^'.home_url().'/.*\.pdf$#i', 'vpdfe_pdf_embed_html_from_autoembed');
 
 function vpdfe_pdf_attachment_link ($html, $id) {
     $post = get_post( $id, ARRAY_A );
