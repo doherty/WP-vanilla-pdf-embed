@@ -38,7 +38,7 @@ function vpdfe_get_attachment_id_by_url( $url ) {
 
     $prefix     = $wpdb->prefix;
     $attachment = $wpdb->get_col( $wpdb->prepare(
-        "SELECT ID FROM " . $prefix . "posts WHERE guid RLIKE %s;",
+        "SELECT ID FROM " . $prefix . "posts WHERE guid LIKE %%%s;",
         $parse_url[1]
     ) );
     if (! is_array($attachment)) {
