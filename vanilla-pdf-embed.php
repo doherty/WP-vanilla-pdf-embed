@@ -41,7 +41,7 @@ function vpdfe_get_attachment_id_by_url( $url ) {
         "SELECT ID FROM " . $prefix . "posts WHERE guid RLIKE %s;",
         $parse_url[1]
     ) );
-    if (! is_array($attachment)) {
+    if ( (! is_array($attachment) ) || (! isset($attachment[0]) ) ) {
         return;
     }
 
