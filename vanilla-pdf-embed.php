@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: AB PDF Embed
- * Plugin URI: 
- * Description: Based on Mike Doherty's Vanilla PDF Embed, but uses iframe for Chrome and safari browsers (which don't obey Adobe's view=FitH open parameter). Requires is_safari() and is_chrome(), which can be found in PHP Browser Detection.
- * Version: 0.0.1
- * Author: Renee Mattie <reneemattie@hotmail.com>
- * Author 
+ * Plugin Name: Vanilla PDF Embed
+ * Plugin URI: http://wordpress.org/plugins/vanilla-pdf-embed/
+ * Description: Simple PDF embeds using &lt;object&gt;
+ * Version: 0.0.6
+ * Author: Mike Doherty <mike@mikedoherty.ca>
+ * Author URI: http://hashbang.ca
  * License: GPL2+
  */
  
@@ -117,13 +117,9 @@ function vpdfe_pdf_embed_html($src, $route=VPDFE_SHORTCODE, $title='', $w='100%'
             $title = $wp_post->post_title;
         }
     }
-/*    else {
-    	echo "$src not found in attachments <br />";
-    }*/
     
+// prevent autoembedding file with name like home_url() . 'boo.jpg'
     If ($route == VPDFE_AUTOEMBED && (0 == preg_match('#^' . home_url() .'.*\.pdf#i', $src)) ) {
-/* prevent autoembedding file with name like home_url() . 'boo.jpg' */    
-//		echo __FUNCTION__ .": $src is not a pdf file.  I will not autoembed it<br />";
     	return;
     }
 
@@ -146,16 +142,12 @@ add_shortcode( 'pdf', 'vpdfe_pdf_embed_html_from_shortcode' );
  * Adds a fake oEmbed provider for this Wordpress site
  */
 function vpdfe_pdf_embed_html_from_autoembed ($matches, $attr, $url, $rawattr) {
-/*	static $ce = 0;
-  	echo __FUNCTION__ . '<br />  '. ++$ce . ': '. $url . '<br/>';
-*/  	
     $embed_html = vpdfe_pdf_embed_html($url,VPDFE_AUTOEMBED);
     return $embed_html ? $embed_html : $url;
 }
 wp_embed_register_handler('vanilla-pdf', '#^' . home_url() .'#i', 'vpdfe_pdf_embed_html_from_autoembed');
 
 function vpdfe_pdf_attachment_link ($html, $id) {
-//  echo __FUNCTION__ . ' <br />';
     $post = get_post( $id, ARRAY_A );
     $embed_html = vpdfe_pdf_embed_html( $post['guid'], VPDFE_ATTACHMENT );
 
