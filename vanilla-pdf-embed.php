@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Vanilla PDF Embed
- * Plugin URI: http://wordpress.org/plugins/vanilla-pdf-embed/
- * Description: Simple PDF embeds using &lt;object&gt;
- * Version: 0.0.6
- * Author: Mike Doherty <mike@mikedoherty.ca>
- * Author URI: http://hashbang.ca
+ * Plugin Name: AB PDF Embed
+ * Plugin URI: 
+ * Description: Based on Mike Doherty's Vanilla PDF Embed, but uses iframe for Chrome and safari browsers (which don't obey Adobe's view=FitH open parameter). Requires is_safari() and is_chrome(), which can be found in PHP Browser Detection.
+ * Version: 0.0.1
+ * Author: Renee Mattie <reneemattie@hotmail.com>
+ * Author 
  * License: GPL2+
  */
  
@@ -145,7 +145,7 @@ function vpdfe_pdf_embed_html_from_autoembed ($matches, $attr, $url, $rawattr) {
     $embed_html = vpdfe_pdf_embed_html($url,VPDFE_AUTOEMBED);
     return $embed_html ? $embed_html : $url;
 }
-wp_embed_register_handler('vanilla-pdf', '#^' . home_url() .'#i', 'vpdfe_pdf_embed_html_from_autoembed');
+wp_embed_register_handler('vanilla-pdf', '#^'.home_url().'#i', 'vpdfe_pdf_embed_html_from_autoembed');
 
 function vpdfe_pdf_attachment_link ($html, $id) {
     $post = get_post( $id, ARRAY_A );
