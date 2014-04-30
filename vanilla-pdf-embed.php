@@ -117,7 +117,7 @@ function vpdfe_pdf_embed_html($src, $route=VPDFE_SHORTCODE, $title='', $w='100%'
             $title = $wp_post->post_title;
         }
     }
-    elseif ($route == VPDFE_AUTOEMBED && (0 == preg_match('#^' . home_url() .'.*\.pdf#i', $src)) ) {
+    elseif ($route == VPDFE_AUTOEMBED && (0 == preg_match('#^' . quotemeta(home_url()) .'.*\.pdf$#i', $src)) ) {
     // prevent autoembedding file with name like home_url() . 'boo.jpg' (but allow with shortcode)
     	return;
     }
