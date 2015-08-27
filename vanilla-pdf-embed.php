@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Vanilla PDF Embed
- * Plugin URI: http://wordpress.org/plugins/vanilla-pdf-embed/
+ * Plugin URI: https://wordpress.org/plugins/vanilla-pdf-embed/
  * Description: Simple PDF embeds using &lt;object&gt;
  * Version: 0.0.7
  * Author: Mike Doherty <mike@mikedoherty.ca>
- * Author URI: http://hashbang.ca
+ * Author URI: https://hashbang.ca
  * License: GPL2+
  */
 
