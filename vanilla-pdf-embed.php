@@ -101,6 +101,7 @@ function vpdfe_pdf_embed_html_from_shortcode( $params , $content = null ) {
     $embed_html = vpdfe_pdf_embed_html($src ? $src : $content, VPDFE_SHORTCODE, $title, $width, $height);
     return $embed_html ? $embed_html : $content;
 }
+add_shortcode( 'pdf', 'vpdfe_pdf_embed_html_from_shortcode' );
 
 function vpdfe_pdf_embed_html($src, $route=VPDFE_SHORTCODE, $title='', $w='100%', $h='500em') {
     // if $content is a URL pointing to an attachment page on this Wordpress
@@ -117,7 +118,7 @@ function vpdfe_pdf_embed_html($src, $route=VPDFE_SHORTCODE, $title='', $w='100%'
             $title = $wp_post->post_title;
         }
     }
-    elseif ($route == VPDFE_AUTOEMBED && (0 == preg_match('#^' . quotemeta(home_url()) .'.*\.pdf$#i', $src)) ) {
+    elseif ($route == VPDFE_AUTOEMBED && (0 == preg_match('#^' . quotemeta(home_url()) . '.*\.pdf$#i', $src)) ) {
     // prevent autoembedding file with name like home_url() . 'boo.jpg' (but allow with shortcode)
         return;
     }
@@ -135,7 +136,6 @@ function vpdfe_pdf_embed_html($src, $route=VPDFE_SHORTCODE, $title='', $w='100%'
         ($h ? 'height="' . esc_attr($h) . '"' : '')
     );
 }
-add_shortcode( 'pdf', 'vpdfe_pdf_embed_html_from_shortcode' );
 
 /*
  * Adds a fake oEmbed provider for this Wordpress site
